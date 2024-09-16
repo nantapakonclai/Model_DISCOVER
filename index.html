@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover the Best Habitat for Your Pets</title>
+    <style>  
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #4CAF50;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+        
+        .img-container {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+.img-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+@media (max-width: 600px) {
+    .img-container img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="formSection">
+            <h1>Discover the Best Habitat for Your Pets</h1>
+            <form id="petForm">
+                <label for="petType">Your pet species:</label>
+                <select id="petType" name="petType" required>
+                    <option value="" disabled selected>Select your pet's species</option>
+                    <option value="Sulcata Tortoise">Sulcata Tortoise</option>
+                    <option value="Bearded & Rankin’s Dragon">Bearded & Rankin’s 							Dragon</option>
+                    <option value="Green Iguana">Green Iguana</option>
+                    <option value="Red-eared Sliders">Red-eared Sliders</option>
+                    <option value="Leopard Gecko">Leopard Gecko</option>
+                    <option value="Veiled Chameleon">Veiled Chameleon</option>
+                    <option value="Ball Python">Ball Python</option>
+                    <option value="Crested Gecko">Crested Gecko</option>
+                    <option value="Corn Snake">Corn Snake</option>
+                    <option value="Russian Tortoise">Russian Tortoise</option>
+                    <option value="Green Anolis">Green Anolis</option>
+                    <option value="Yellow Bellied Slider">Yellow Bellied Slider</option>
+                    <option value="Day Gecko">Day Gecko</option>
+                    <option value="Chinese Water Dragon">Chinese Water Dragon</option>
+                    <option value="Greek Tortoise">Greek Tortoise</option>
+                    <option value="Long-tailed Lizard">Long-tailed Lizard</option>
+                    <option value="Milk Snake">Milk Snake</option>
+                    <option value="Spiny-tailed Lizard">Spiny-tailed Lizard</option>
+                    <option value="Collared Lizard">Collared Lizard</option>
+                    <option value="Painted Turtle">Painted Turtle</option>
+                    <option value="Panther Chameleon">Panther Chameleon</option>
+                    <option value="Curly Tail Lizard">Curly Tail Lizard</option>
+                    <option value="Hermann’s Tortoise">Hermann’s Tortoise</option>
+                    <option value="Steppe Runner">Steppe Runner</option>
+                    <option value="Boa Constrictor">Boa Constrictor</option>
+                    <option value="Hamster">Hamster</option>
+                    <option value="Giant Hamster">Giant Hamster</option>
+                    <option value="Guinea Pig">Guinea Pig</option>
+                    <option value="Dumbo Rat">Dumbo Rat</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Ferret">Ferret</option>
+                    <option value="Squirrel">Squirrel</option>
+                    <option value="African Pygmy Hedgehog">African Pygmy Hedgehog</option>
+                    <option value="Emperor Scorpion">Emperor Scorpion</option>
+                    <option value="Red-clawed scorpion">Red-clawed scorpion</option>
+                    <option value="Black scorpion">Black scorpion</option>
+                    <option value="Desert Hairy scorpion">Desert Hairy scorpion</option>
+                    <option value="Tarantula">Tarantula</option>
+                    <option value="Beetles">Beetles</option>     
+                </select>
+                
+                <label for="petSize">Size:</label>
+                <select id="petSize" name="petSize" required>
+                    <option value="" disabled selected>Select your pet's size</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                </select>
+                
+                <label for="petAge">Age:</label>
+                <select id="petAge" name="petAge" required>
+                    <option value="" disabled selected>Select your pet's age</option>
+                    <option value="Young">Young</option>
+                    <option value="Adult">Adult</option>
+                    <option value="Senior">Senior</option>
+                </select>
+
+                <button type="button" onclick="showRecommendations()">Next</button>
+            </form>
+        </div>
+        
+        <div id="resultSection" class="hidden">
+            <h1>Your Selected Information</h1>
+            <p id="petInfo"></p>
+            <h1>The Best Type that Suits You</h1>
+            <p id="boxType"></p>
+            <p id="boxRecommendation"></pp id="boxType"></p>
+            <div class="img-container">
+                <img id="petImage" src="" alt="Pet Image">
+            </div>
+            <button onclick="goBack()">Go back</button>
+        </div>
+    </div>
+
+    <script>
+        function showRecommendations() {
+            // Get values from the form
+            const petType = document.getElementById('petType').value;
+            const petSize = document.getElementById('petSize').value;
+            const petAge = document.getElementById('petAge').value;
+
+            // Construct the information to display
+            const petInfo = `Your pet species: ${petType}<br>Size: ${petSize}<br>Age: ${petAge}`;
+            
+            // Determine box recommendation and image
+            let boxType = '';
+            let boxRecommendation = '';
+            let imageSrc = '';
+            if (petType === 'Sulcata Tortoise') {
+                boxType = 'Desert-Type Model';
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                imageSrc = 'https://www.everythingreptiles.com/wp-content/uploads/2020/06/Sulcata-Tortoise-Food.jpg'; 
+            } else if (petType === 'Bearded & Rankin’s Dragon') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://i.pinimg.com/736x/18/69/c2/1869c2dc9a5de76178e6a5b7481b5998.jpg'; 
+            } else if (petType === 'Green Iguana') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                 boxType = 'Desert-Type Model';
+                 imageSrc = 'https://d2zp5xs5cp8zlg.cloudfront.net/image-81508-800.jpg';
+            } else if (petType === 'Red-eared Sliders') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://www.tfhmagazine.com/-/media/Project/OneWeb/TFH/US/articles/350_the_care_and_reproduction_of_the_red_eared_slider.jpg'; 
+            } else if (petType === 'Leopard Gecko') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://becausetees.com/cdn/shop/articles/Leopard_Gecko_Fun_Facts_800x800.jpg?v=1691698398'; 
+            } else if (petType === 'Veiled Chameleon') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://reptifiles.com/wp-content/uploads/2021/09/veiled-chameleon-small-1.jpg'; 
+            } else if (petType === 'Ball Python') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://cdn.britannica.com/57/159857-050-BEDD9461/python-ball.jpg'; 
+            } else if (petType === 'Crested Gecko') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Crested_gecko_-_1.jpg/800px-Crested_gecko_-_1.jpg'; 
+            } else if (petType === 'Corn Snake') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://www.cbreptile.com/wp-content/smush-webp/2023/08/corn-snake-for-sale.jpg.webp'; 
+            } else if (petType === 'Russian Tortoise') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://reptifiles.com/wp-content/uploads/2021/10/russian-tortoise-small.jpg';
+            } else if (petType === 'Green Anolis') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Green_anole.jpg/800px-Green_anole.jpg'; 
+            } else if (petType === 'Yellow Bellied Slider') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://www.everythingreptiles.com/wp-content/uploads/2021/01/Yellow-Bellied-Slider.jpg'; 
+            } else if (petType === 'Day Gecko') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://adlayasanimals.wordpress.com/wp-content/uploads/2021/02/taggecko-06.jpg'; 
+            } else if (petType === 'Chinese Water Dragon') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://lafeber.com/vet/wp-content/uploads/Water-dragon-cropped-width-700.jpg'; 
+            } else if (petType === 'Greek Tortoise') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tunisian_tortoise_%28Testudo_graeca_nabeulensis%29_male_Cap_Bon.jpg/640px-Tunisian_tortoise_%28Testudo_graeca_nabeulensis%29_male_Cap_Bon.jpg'; 
+            } else if (petType === 'Long-tailed Lizard') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://exoticpetswichita.com/cdn/shop/products/45be34fb202204eca99cd1140f124476_750x.jpg?v=1627673137'; 
+            } else if (petType === 'Milk Snake') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert&Tropical-Type Model';
+                imageSrc = 'https://preview.redd.it/help-does-anyone-know-were-i-can-get-a-eastern-milk-snake-v0-e1a59rgqn47c1.jpeg?width=640&crop=smart&auto=webp&s=fb8c76e6c752d8f52aea416c5e6b49feb3bcca48'; 
+            } else if (petType === 'Spiny-tailed Lizard') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://www.animal.photos/reptamph/lizd-st-sah_files/sahara_st5.jpg';
+            } else if (petType === 'Collared Lizard') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Desert&Tropical-Type Model';
+                imageSrc = 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/0516/1918.jpeg'; 
+            } else if (petType === 'Painted Turtle') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://www.montananaturalist.org/wp-content/uploads/western-painted-turtle-photo-by-John-P-Clare-CC-2.0-NC.jpg'; 
+            } else if (petType === 'Panther Chameleon') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://reptilesmagazine.com/wp-content/uploads/data-import/6fd47469/panther-chameleon-shutterstock661154743.jpg'; 
+            } else if (petType === 'Curly Tail Lizard') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://yard-doc.com/wp-content/uploads/2021/07/curly-tailed-lizard-pixabay-4422438_640.jpg';
+            } else if (petType === 'Hermann’s Tortoise') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://reptilesmagazine.com/wp-content/uploads/data-import/6fd47469/hermans-stortoiseshutterstock715012390.jpg'; 
+            } else if (petType === 'Steppe Runner') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://reptilesmagazine.com/wp-content/uploads/data-import/ae28b03f/Steppe2-600.jpg'; 
+            } else if (petType === 'Boa Constrictor') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2dldHR5aW1hZ2VzLTUyMDA3MjcyOC5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH19fQ=='; 
+            } else if (petType === 'Hamster') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://www.parksidevets.com/pets/wp-content/uploads/sites/2/2019/05/parksite-vets-Hamster-care.jpg'; 
+            } else if (petType === 'Giant Hamster') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://i.pinimg.com/736x/c3/01/e4/c301e4e03ae98f75dbcc1ecb37de9554.jpg';
+            } else if (petType === 'Guinea Pig') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://cdn.prod.website-files.com/5eae38112aed416159affd28/5eb98d7103c8a10e8d36af74_guinea-pig-in-grass.jpg'; 
+            } else if (petType === 'Dumbo Rat') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert&Tropical-Type Model';
+                imageSrc = 'https://i0.wp.com/www.simplypets.com/wp-content/uploads/2019/05/Dumbo-Rats.jpg?fit=750%2C460&ssl=1'; 
+            } else if (petType === 'Rabbit') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://th-thumbnailer.cdn-si-edu.com/sYxg--kQJGdpTv97g7HgFmZnG2c=/800x450/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/70/e0/70e0989e-646e-4537-ae8e-7bbf863db2fd/ebjj1g.jpg'; 
+            } else if (petType === 'Ferret') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Desert&Tropical-Type Model';
+                imageSrc = 'https://www.rspcansw.org.au/wp-content/uploads/2017/02/ferret2-700x587.jpg';
+            } else if (petType === 'Squirrel') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE L' : petSize === 'Medium' ? 'NO SIZE' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://i.pinimg.com/736x/51/4c/4e/514c4ea1509e75141a2d764ac8efc683.jpg'; 
+            } else if (petType === 'African Pygmy Hedgehog') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://d2zp5xs5cp8zlg.cloudfront.net/image-77036-800.jpg'; 
+            }else if (petType === 'Emperor Scorpion') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://f.ptcdn.info/416/081/000/rzgm88xpa4x6zFf9bXcg-o.jpg'; 
+            } else if (petType === 'Red-clawed scorpion') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://aquariumbreeder.com/wp-content/uploads/2023/07/Red-Clawed-Scorpion-Pandinoides-cavimanus-%E2%80%93-Detailed-Guide-Care-Diet-and-Breeding-profile.jpg'; 
+            } else if (petType === 'Black scorpion') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert&Tropical-Type Model';
+                imageSrc = 'https://www.researchgate.net/publication/350506334/figure/fig1/AS:1007227582296064@1617153177664/The-black-scorpion-of-Malaysia-Heterometrus-longimanus-assuming-a-defensive-position.png'; 
+            } else if (petType === 'Desert Hairy scorpion') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert-Type Model';
+                imageSrc = 'https://files.aptuitivcdn.com/QMB0Zbj0Xj-1736/images/pest-library/desert-hairy-scorpions-in-tucson-az.1724852958.png?t=w_800';
+            
+            } else if (petType === 'Tarantula') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Desert&Tropical-Type Model';
+                imageSrc = 'https://wakyma.com/blog/wp-content/uploads/2020/11/la-tarantula-como-mascota.jpg'; 
+            } else if (petType === 'Beetles') {
+                boxRecommendation = petSize === 'Small' ? 'SIZE M' : petSize === 'Medium' ? 'SIZE L' : 'NO SIZE';
+                boxType = 'Tropical-Type Model';
+                imageSrc = 'https://pw4kcdn-gvcydfg3b6hng4f7.z02.azurefd.net/media/lsnfh3qc/2022_720x480headers_beetle.jpg?preset=fullWidth360'; 
+            } 
+            
+
+            // Display the information, recommendation, and image
+            document.getElementById('petInfo').innerHTML = petInfo;
+            document.getElementById('boxType').innerText = boxType;
+            document.getElementById('boxRecommendation').innerText = boxRecommendation;
+            document.getElementById('petImage').src = imageSrc;
+
+            // Hide the form section and show the result section
+            document.getElementById('formSection').classList.add('hidden');
+            document.getElementById('resultSection').classList.remove('hidden');
+        }
+
+        function goBack() {
+            // Hide the result section and show the form section
+            document.getElementById('resultSection').classList.add('hidden');
+            document.getElementById('formSection').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
